@@ -1,0 +1,16 @@
+{
+	"name": "news_scrapper",
+	"version": "1.0.0",
+	"description": "scrape given news website for their content",
+	"main": "index.js",
+	"scripts": {
+		"start": "npm run start:clean && node index.js",
+		"start:clean": "clear && rm -rf data/out/*.*"
+	},
+	"author": "Biruk Berhanu",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"node-html-parser": "^3.1.0"
+	}
+}
