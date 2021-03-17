@@ -1,40 +1,44 @@
 {
-	"baseURL": "https://ethiopianmonitor.com/category/business/",
-	"newsLinkSelectorObjs": [
-		{
-			"name": "links",
-			"selector": "div.article-container article a.more-link",
-			"type": "array",
-			"attribute": "href",
-			"outputType": "array"
-		}
-	],
-	"selectorObjs": [
-		{
-			"name": "title",
-			"selector": "div.article-content .entry-title"
-		},
-		{
-			"name": "article",
-			"selector": "#primary div.article-content .entry-content>p",
-			"type": "array",
-			"outputType": "string",
-			"delimiter": "$$$\n"
-		},
-		{
-			"name": "date",
-			"selector": ".article-content time",
-			"attribute": "dateTime"
-		},
-		{
-			"name": "image",
-			"selector": "img.attachment-colormag-featured-image",
-			"attribute": "src"
-		},
-		{
-			"name": "author",
-			"selector": ".url.fn.n"
-		}
-	],
-	"writingLocation": "data/out/ethioMonitor.json"
+	"showCase": {
+		"url": "https://ethiopianmonitor.com/category/business/",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": "div.article-container article a.more-link",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": "div.article-content .entry-title"
+			},
+			{
+				"name": "article",
+				"selector": "#primary div.article-content .entry-content p",
+				"type": "array",
+				"outputType": "string",
+				"delimiter": "$$$\n"
+			},
+			{
+				"name": "date",
+				"selector": ".article-content time",
+				"attribute": "dateTime"
+			},
+			{
+				"name": "image",
+				"selector": "img.attachment-colormag-featured-image",
+				"attribute": "src"
+			},
+			{
+				"name": "author",
+				"selector": ".url.fn.n"
+			}
+		],
+		"savingLocation": "data/out/ethioMonitor.json"
+	}
 }

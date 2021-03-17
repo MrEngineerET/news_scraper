@@ -11,25 +11,35 @@ let ethiopianMonitorConfig = fs.readFileSync(
 )
 ethiopianMonitorConfig = JSON.parse(ethiopianMonitorConfig)
 
-async function getNEWS() {
-	// load the the showcase page
-	let showCasePage = await loader(ethiopianMonitorConfig.baseURL)
-	const { links } = parser(showCasePage, ethiopianMonitorConfig.newsLinkSelectorObjs)
+scrape(ethiopianMonitorConfig)
 
-	let newsPages = []
-	let requirednewsContent = []
+async function scrape(config) {
+	// getting all the news-link from the showcase
+	const links = await scrapeShowCase(config)
+
+	// fetching all the news from each link in the links
+	let allNEWS = []
 	for (let link of links) {
-		const page = await loader(link)
-		newsPages.push({ page, link })
+		let news = await scrapeNEWS(link, config)
+		allNEWS.push({ link, ...news })
 	}
-	requirednewsContent = newsPages.map(({ page, link }) => {
-		return { link, ...parser(page, ethiopianMonitorConfig.selectorObjs) }
-	})
-	return requirednewsContent
+
+	//saving all the news
+	saveNEWS(allNEWS, config.news.savingLocation)
 }
 
-getNEWS().then(news => {
+async function scrapeShowCase({ showCase }) {
+	let showCasePage = await loader(showCase.url)
+	const { links } = parser(showCasePage, showCase.selectorObjs)
+	return links
+}
+async function scrapeNEWS(link, config) {
+	const page = await loader(link)
+	const news = parser(page, config.news.selectorObjs)
+	return news
+}
+function saveNEWS(news, location) {
 	console.log('Writting to a file Started')
-	fs.writeFileSync(path.join(ethiopianMonitorConfig.writingLocation), JSON.stringify(news))
+	fs.writeFileSync(path.join(location), JSON.stringify(news))
 	console.log('Writing to file is done')
-})
+}
