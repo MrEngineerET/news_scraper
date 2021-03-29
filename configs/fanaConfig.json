@@ -1,0 +1,45 @@
+{
+	"showCase": {
+		"url": "https://www.fanabc.com/ቢዝነስ/",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": ".listing.listing-thumbnail.bsw-8 article h2.title>a.post-url",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array",
+				"webDomain": "https://www.fanabc.com"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": ".post-header-inner .post-title"
+			},
+			{
+				"name": "article",
+				"selector": ".entry-content.single-post-content p:not(p:last-child)",
+				"type": "array",
+				"outputType": "string",
+				"delimiter": "$$$\n"
+			},
+			{
+				"name": "date",
+				"selector": "div.post-header-inner span.time > time > b"
+			},
+			{
+				"name": "image",
+				"selector": "div.single-featured > a > img",
+				"attribute": "src"
+			},
+			{
+				"name": "author",
+				"selector": "",
+				"default": "Fana"
+			}
+		],
+		"savingLocation": "data/out/fana.json"
+	}
+}

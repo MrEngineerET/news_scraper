@@ -1,0 +1,42 @@
+{
+	"showCase": {
+		"url": "https://www.ethiopianreporter.com/bizines",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": "article div.post-content .post-title a",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array",
+				"webDomain": "https://www.ethiopianreporter.com"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": ".post-content .post-title span"
+			},
+			{
+				"name": "article",
+				"selector": ".post-content .node__content div"
+			},
+			{
+				"name": "date",
+				"selector": "article div.post-content .post-created"
+			},
+			{
+				"name": "image",
+				"selector": "article div.post-thumbnail figure img",
+				"attribute": "src",
+				"webDomain": "https://www.ethiopianreporter.com"
+			},
+			{
+				"name": "author",
+				"selector": "article div.post-content div.post-meta a.username"
+			}
+		],
+		"savingLocation": "data/out/ethiopianReporter.json"
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"showCase": {
+		"url": "https://furtherafrica.com/category/ethiopia/",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": "#main article .entry-title a",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": ".entry-title"
+			},
+			{
+				"name": "article",
+				"selector": ".entry-content > p",
+				"type": "array",
+				"outputType": "string",
+				"delimiter": "$$$\n"
+			},
+			{
+				"name": "date",
+				"selector": ".posted-on time",
+				"attribute": "dateTime"
+			},
+			{
+				"name": "image",
+				"selector": "#content .featured-image-wrap img",
+				"attribute": "src"
+			},
+			{
+				"name": "author",
+				"selector": "",
+				"default": "Further Africa"
+			}
+		],
+		"savingLocation": "data/out/furtherAfrica.json"
+	}
+}

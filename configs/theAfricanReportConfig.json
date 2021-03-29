@@ -7,8 +7,7 @@
 				"selector": "div.article-container article a.more-link",
 				"type": "array",
 				"attribute": "href",
-				"outputType": "array",
-				"webDomain": "https://ethiopianmonitor.com"
+				"outputType": "array"
 			}
 		]
 	},
@@ -20,7 +19,7 @@
 			},
 			{
 				"name": "article",
-				"selector": "#primary div.article-content .entry-content p:not(p:last-child)",
+				"selector": "#primary div.article-content .entry-content p",
 				"type": "array",
 				"outputType": "string",
 				"delimiter": "$$$\n"
@@ -33,14 +32,13 @@
 			{
 				"name": "image",
 				"selector": "img.attachment-colormag-featured-image",
-				"attribute": "src",
-				"webDomain": "https://ethiopianmonitor.com"
+				"attribute": "src"
 			},
 			{
 				"name": "author",
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/ethioMonitor.json"
+		"savingLocation": "data/out/theAfricanReport.json"
 	}
 }

@@ -1,0 +1,44 @@
+{
+	"showCase": {
+		"url": "https://www.2merkato.com/news",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": ".readmore a",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": ".article-title a"
+			},
+			{
+				"name": "article",
+				"selector": ".article-content p:not(p:last-child)",
+				"type": "array",
+				"outputType": "string",
+				"delimiter": "$$$\n"
+			},
+			{
+				"name": "date",
+				"selector": ".article-info .published"
+			},
+			{
+				"name": "image",
+				"selector": ".article-content p img",
+				"attribute": "src"
+			},
+			{
+				"name": "author",
+				"selector": "",
+				"author": "2Merkato"
+			}
+		],
+		"savingLocation": "data/out/twoMerkato.json"
+	}
+}

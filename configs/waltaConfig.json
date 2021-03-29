@@ -1,0 +1,43 @@
+{
+	"showCase": {
+		"url": "https://ethiopianmonitor.com/category/business/",
+		"selectorObjs": [
+			{
+				"name": "links",
+				"selector": "div > header > h2 > a",
+				"type": "array",
+				"attribute": "href",
+				"outputType": "array"
+			}
+		]
+	},
+	"news": {
+		"selectorObjs": [
+			{
+				"name": "title",
+				"selector": ".site-main .entry-header .entry-title"
+			},
+			{
+				"name": "article",
+				"selector": "#main > div > div > p",
+				"type": "array",
+				"outputType": "string",
+				"delimiter": "$$$\n"
+			},
+			{
+				"name": "date",
+				"selector": ".entry-header div.date a"
+			},
+			{
+				"name": "author",
+				"selector": ".entry-header div.by-author a"
+			},
+			{
+				"name": "image",
+				"selector": "#main > div > div img",
+				"attribute": "src"
+			}
+		],
+		"savingLocation": "data/out/walta.json"
+	}
+}

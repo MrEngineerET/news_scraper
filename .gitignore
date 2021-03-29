@@ -1,4 +1,6 @@
 test.js
+test2.js
 node_modules/
 package-lock.json
 data/out/
+tasks.txt
