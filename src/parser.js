@@ -43,10 +43,15 @@ function _getContent(dom, selectorObj) {
 function _getContentString(dom, selectorObj) {
 	let content = dom.querySelector(selectorObj.selector)
 	if (!content) return null
-
 	if (selectorObj.attribute) {
 		content = content.getAttribute(selectorObj.attribute)
-		if (content) return content.trim()
+		if (content) {
+			// if the attribute is an href and the link is not valid
+			if (selectorObj.attribute == 'href' && !_validLink(content)) {
+				content = selectorObj.webDomain + content
+			}
+			return content.trim()
+		}
 	}
 	content = content.text
 	if (content) return content.trim()
@@ -57,8 +62,16 @@ function _getContentArray(dom, selectorObj) {
 	let content = dom.querySelectorAll(selectorObj.selector)
 	if (!content) return null
 	else {
-		if (selectorObj.attribute) content = content.map(el => el.getAttribute(selectorObj.attribute))
-		else content = content.map(el => el.text)
+		if (selectorObj.attribute) {
+			content = content.map(el => el.getAttribute(selectorObj.attribute))
+			// if the attribute is an href and the link is not valid
+			content = content.map(el => {
+				if (selectorObj.attribute == 'href' && !_validLink(el)) {
+					el = selectorObj.webDomain + el
+				}
+				return el.trim()
+			})
+		} else content = content.map(el => el.text)
 		// return result
 		if (selectorObj.outputType == 'array') return content
 		else return content.join(selectorObj.delimiter)
@@ -76,4 +89,8 @@ function _getContentDate(dom, selectorObj) {
 	date = date.text
 	if (date) return new Date(date.trim())
 	else return null
+}
+
+function _validLink(link) {
+	return link.includes('https')
 }
