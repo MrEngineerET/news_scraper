@@ -16,14 +16,13 @@ configs = configs.filter(config => !config.type)
 	// read the configration of each news and scrape
 	for (let { name, location } of configs) {
 		let config = readJSONfile(location)
-		spinner(`Started Scrapping ${name} site`).start()
 		await scrape(config)
-		spinner(`Finished Scrapping ${name} site`).succeed()
 	}
 })()
 
 async function scrape(config) {
 	try {
+		spinner(`Started Scrapping ${config.name} site`).start()
 		// getting all the news-link from the showcase
 		const links = await scrapeShowCase(config)
 
@@ -36,21 +35,26 @@ async function scrape(config) {
 
 		//saving all the news
 		saveNEWS(allNEWS, config.news.savingLocation)
+		spinner(`Finished Scrapping ${config.name} site`).succeed()
 	} catch (err) {
-		console.log(`Error: ${err.message}`)
+		spinner(`Failed Scrapping ${config.name}: ${err.message}`)
 	}
 }
 // gets all the news-link from the showcase
 async function scrapeShowCase({ showCase }) {
-	let showCasePage = await loader(showCase.url)
-	const { links } = parser(showCasePage, showCase.selectorObjs)
-	return links
+	try {
+		let showCasePage = await loader(showCase.url)
+		const { links } = parser(showCasePage, showCase.selectorObjs)
+		return links
+	} catch (error) {}
 }
 // fetching all the neccessary component of the news from the link
 async function scrapeNEWS(link, config) {
-	const page = await loader(link)
-	const news = parser(page, config.news.selectorObjs)
-	return news
+	try {
+		const page = await loader(link)
+		const news = parser(page, config.news.selectorObjs)
+		return news
+	} catch (error) {}
 }
 // save the news to a file
 function saveNEWS(news, location) {
@@ -59,6 +63,7 @@ function saveNEWS(news, location) {
 	spinner('	Finished writting to a file').succeed()
 }
 
+//read a json file and return the parsed json object
 function readJSONfile(location) {
 	let file = fs.readFileSync(location, {
 		encoding: 'utf-8',

@@ -1,4 +1,5 @@
 {
+	"name": "Fortune",
 	"showCase": {
 		"url": "https://addisfortune.news/fortune-news/",
 		"selectorObjs": [
