@@ -40,6 +40,6 @@
 				"author": "2Merkato"
 			}
 		],
-		"savingLocation": "data/out/twoMerkato.json"
+		"savingLocation": "src/scraper/data/out/twoMerkato.json"
 	}
 }

@@ -39,6 +39,6 @@
 				"attribute": "src"
 			}
 		],
-		"savingLocation": "data/out/walta.json"
+		"savingLocation": "src/scraper/data/out/walta.json"
 	}
 }

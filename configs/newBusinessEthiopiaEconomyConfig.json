@@ -40,6 +40,6 @@
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/newBusinessEthiopiaEconomy.json"
+		"savingLocation": "src/scraper/data/out/newBusinessEthiopiaEconomy.json"
 	}
 }

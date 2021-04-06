@@ -38,6 +38,6 @@
 				"selector": "article div.post-content div.post-meta a.username"
 			}
 		],
-		"savingLocation": "data/out/ethiopianReporter.json"
+		"savingLocation": "src/scraper/data/out/ethiopianReporter.json"
 	}
 }

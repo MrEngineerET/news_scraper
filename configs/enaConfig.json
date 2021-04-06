@@ -43,6 +43,6 @@
 				"default": "ENA"
 			}
 		],
-		"savingLocation": "data/out/ena.json"
+		"savingLocation": "src/scraper/data/out/ena.json"
 	}
 }

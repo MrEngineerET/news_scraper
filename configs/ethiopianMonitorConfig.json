@@ -42,6 +42,6 @@
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/ethioMonitor.json"
+		"savingLocation": "src/scraper/data/out/ethioMonitor.json"
 	}
 }

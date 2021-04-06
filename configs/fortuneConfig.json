@@ -41,6 +41,6 @@
 				"default": "fortune"
 			}
 		],
-		"savingLocation": "data/out/fortune.json"
+		"savingLocation": "src/scraper/data/out/fortune.json"
 	}
 }

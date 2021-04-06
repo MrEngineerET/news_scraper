@@ -42,6 +42,6 @@
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/businessInfoETH.json"
+		"savingLocation": "src/scraper/data/out/businessInfoETH.json"
 	}
 }

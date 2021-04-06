@@ -41,6 +41,6 @@
 				"default": "Fana"
 			}
 		],
-		"savingLocation": "data/out/fana.json"
+		"savingLocation": "src/scraper/data/out/fana.json"
 	}
 }

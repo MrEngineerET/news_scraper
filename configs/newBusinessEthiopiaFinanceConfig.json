@@ -40,6 +40,6 @@
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/newBusinessEthiopiaFinance.json"
+		"savingLocation": "src/scraper/data/out/newBusinessEthiopiaFinance.json"
 	}
 }

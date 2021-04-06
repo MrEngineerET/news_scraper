@@ -40,6 +40,6 @@
 				"selector": ".url.fn.n"
 			}
 		],
-		"savingLocation": "data/out/newBusinessEthiopiaTrade.json"
+		"savingLocation": "src/scraper/data/out/newBusinessEthiopiaTrade.json"
 	}
 }

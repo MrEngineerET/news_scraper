@@ -41,6 +41,6 @@
 				"default": "Further Africa"
 			}
 		],
-		"savingLocation": "data/out/furtherAfrica.json"
+		"savingLocation": "src/scraper/data/out/furtherAfrica.json"
 	}
 }
