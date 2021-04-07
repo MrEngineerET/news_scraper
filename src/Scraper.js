@@ -31,17 +31,17 @@ class Scraper {
 		debugScraper('Finished Reading config.json file')
 
 		// TODO---- start ---- until telegram page scraper is implemented
-		configs = configs.filter(config => config.type != 'telegram')
+		configs = configs.filter(config => config.source.type != 'telegram')
 		// ---- end ----
 
 		// for (let config of configs) {
 		configs.forEach(async config => {
 			try {
 				let allNews = []
-				let { links: urls } = await this.scrape(config.showCaseConfig, null, config.name)
+				let { links: urls } = await this.scrape(config.showCaseConfig, null, config.source)
 				for (let url of urls) {
 					try {
-						let news = await this.scrape(config.newsConfig, url, config.name)
+						let news = await this.scrape(config.newsConfig, url, config.source)
 						if (this.Model) this.saveNewstoDatabase({ url, ...news })
 						else allNews.push({ url, ...news })
 					} catch (error) {
@@ -49,7 +49,7 @@ class Scraper {
 					}
 				}
 				if (!this.Model) {
-					const fileName = `${config.name.replace(/\W/g, '_')}.json`
+					const fileName = `${config.source.name.replace(/\W/g, '_')}.json`
 					const savingLocation = path.join(this.fileSavingDir, `${fileName}`)
 					this.saveNEWStoFile(allNews, savingLocation)
 				}
@@ -70,10 +70,10 @@ class Scraper {
 		debugScraper('Finished Reading config.json file')
 		try {
 			let allNews = []
-			let { links: urls } = await this.scrape(config.showCaseConfig, null, config.name)
+			let { links: urls } = await this.scrape(config.showCaseConfig, null, config.source)
 			for (let url of urls) {
 				try {
-					let news = await this.scrape(config.newsConfig, url, config.name)
+					let news = await this.scrape(config.newsConfig, url, config.source)
 					if (Model) this.saveNewstoDatabase({ url, ...news }, Model)
 					else allNews.push({ url, ...news })
 				} catch (error) {
@@ -81,7 +81,7 @@ class Scraper {
 				}
 			}
 			if (!Model) {
-				const fileName = `${config.name.replace(/\W/g, '_')}.json`
+				const fileName = `${config.source.name.replace(/\W/g, '_')}.json`
 				const savingLocation = path.join(fileSavingDir, `${fileName}`)
 				this.saveNEWStoFile(allNews, savingLocation)
 			}
@@ -113,16 +113,16 @@ class Scraper {
 	}
 	// the main scraping function
 	async scrape(config, url = null, source) {
-		debugScraper(`Started scraping news from ${source}`)
+		debugScraper(`Started scraping news from ${source.name}`)
 		try {
 			let page
 			if (url) page = await loader(url)
 			else page = await loader(config.url)
 			const result = parser(page, config.selectorObjs)
-			debugScraper(`News Successfully scraped from ${source}`)
-			return result
+			debugScraper(`News Successfully scraped from ${source.name}`)
+			return { source: source.id, ...result }
 		} catch (error) {
-			debugScraper(`Failed to scraped from ${source}`)
+			debugScraper(`Failed to scraped from ${source.name}`)
 		}
 	}
 	//read a json file and return the parsed json object

@@ -1,5 +1,8 @@
 {
-	"name": "Walta",
+	"source": {
+		"name": "Walta",
+		"id": ""
+	},
 	"showCase": {
 		"url": "https://ethiopianmonitor.com/category/business/",
 		"selectorObjsConfig": [
@@ -31,14 +34,15 @@
 			},
 			{
 				"name": "author",
-				"selector": ".entry-header div.by-author a"
+				"selector": ".entry-header div.by-author a",
+				"default": ""
 			},
 			{
 				"name": "image",
 				"selector": "#main > div > div img",
-				"attribute": "src"
+				"attribute": "src",
+				"default": ""
 			}
-		],
-		"savingLocation": "src/scraper/data/out/walta.json"
+		]
 	}
 }

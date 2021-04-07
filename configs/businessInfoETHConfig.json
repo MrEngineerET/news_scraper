@@ -1,5 +1,8 @@
 {
-	"name": "businessInfoETH",
+	"source": {
+		"name": "businessInfoETH",
+		"id": ""
+	},
 	"type": "telegram",
 	"showCaseConfig": {
 		"url": "https://t.me/s/Businessinfoeth",
@@ -36,13 +39,14 @@
 				"name": "image",
 				"selector": "img.attachment-colormag-featured-image",
 				"attribute": "src",
-				"webDomain": "https://www.telegram.com"
+				"webDomain": "https://www.telegram.com",
+				"default": ""
 			},
 			{
 				"name": "author",
-				"selector": ".url.fn.n"
+				"selector": ".url.fn.n",
+				"default": ""
 			}
-		],
-		"savingLocation": "src/scraper/data/out/businessInfoETH.json"
+		]
 	}
 }

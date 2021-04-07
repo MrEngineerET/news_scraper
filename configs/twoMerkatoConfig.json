@@ -1,5 +1,8 @@
 {
-	"name": "2Merkato",
+	"source": {
+		"name": "2Merkato",
+		"id": ""
+	},
 	"showCaseConfig": {
 		"url": "https://www.2merkato.com/news",
 		"selectorObjs": [
@@ -8,7 +11,8 @@
 				"selector": ".readmore a",
 				"type": "array",
 				"attribute": "href",
-				"outputType": "array"
+				"outputType": "array",
+				"webDomain": "https://www.2merkato.com"
 			}
 		]
 	},
@@ -32,14 +36,14 @@
 			{
 				"name": "image",
 				"selector": ".article-content p img",
-				"attribute": "src"
+				"attribute": "src",
+				"default": ""
 			},
 			{
 				"name": "author",
 				"selector": "",
-				"author": "2Merkato"
+				"default": ""
 			}
-		],
-		"savingLocation": "src/scraper/data/out/twoMerkato.json"
+		]
 	}
 }

@@ -1,5 +1,8 @@
 {
-	"name": "ENA",
+	"source": {
+		"name": "ENA",
+		"id": ""
+	},
 	"showCaseConfig": {
 		"url": "https://www.ena.et/?cat=31",
 		"selectorObjs": [
@@ -35,7 +38,8 @@
 				"name": "image",
 				"selector": ".td-post-content .td-post-featured-image a",
 				"attribute": "href",
-				"webDomain": "https://ena.com"
+				"webDomain": "https://ena.com",
+				"default": ""
 			},
 			{
 				"name": "author",

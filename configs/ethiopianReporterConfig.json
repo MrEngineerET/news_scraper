@@ -1,5 +1,8 @@
 {
-	"name": "Ethiopian Reporter",
+	"source": {
+		"name": "Ethiopian Reporter",
+		"id": ""
+	},
 	"showCaseConfig": {
 		"url": "https://www.ethiopianreporter.com/bizines",
 		"selectorObjs": [
@@ -31,13 +34,14 @@
 				"name": "image",
 				"selector": "article div.post-thumbnail figure img",
 				"attribute": "src",
-				"webDomain": "https://www.ethiopianreporter.com"
+				"webDomain": "https://www.ethiopianreporter.com",
+				"default": ""
 			},
 			{
 				"name": "author",
-				"selector": "article div.post-content div.post-meta a.username"
+				"selector": "article div.post-content div.post-meta a.username",
+				"default": ""
 			}
-		],
-		"savingLocation": "src/scraper/data/out/ethiopianReporter.json"
+		]
 	}
 }

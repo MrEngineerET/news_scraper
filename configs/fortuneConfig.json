@@ -1,5 +1,8 @@
 {
-	"name": "Fortune",
+	"source": {
+		"name": "Fortune",
+		"id": ""
+	},
 	"showCaseConfig": {
 		"url": "https://addisfortune.news/fortune-news/",
 		"selectorObjs": [
@@ -33,14 +36,14 @@
 			{
 				"name": "image",
 				"selector": "",
-				"attribute": "src"
+				"attribute": "src",
+				"default": ""
 			},
 			{
 				"name": "author",
 				"selector": "",
-				"default": "fortune"
+				"default": ""
 			}
-		],
-		"savingLocation": "src/scraper/data/out/fortune.json"
+		]
 	}
 }
