@@ -1,8 +1,8 @@
 {
 	"name": "Fana",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://www.fanabc.com/ቢዝነስ/",
-		"selectorObjs": [
+		"selectorObjsConfig": [
 			{
 				"name": "links",
 				"selector": ".listing.listing-thumbnail.bsw-8 article h2.title>a.post-url",
@@ -13,8 +13,8 @@
 			}
 		]
 	},
-	"news": {
-		"selectorObjs": [
+	"newsConfig": {
+		"selectorObjsConfig": [
 			{
 				"name": "title",
 				"selector": ".post-header-inner .post-title"

@@ -1,6 +1,6 @@
 {
 	"name": "The African Reporter",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://ethiopianmonitor.com/category/business/",
 		"selectorObjs": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

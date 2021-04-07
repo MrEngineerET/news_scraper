@@ -1,6 +1,6 @@
 {
 	"name": "Fortune",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://addisfortune.news/fortune-news/",
 		"selectorObjs": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

@@ -1,6 +1,6 @@
 {
 	"name": "Further Africa",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://furtherafrica.com/category/ethiopia/",
 		"selectorObjs": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

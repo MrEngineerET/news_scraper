@@ -1,6 +1,6 @@
 {
 	"name": "ENA",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://www.ena.et/?cat=31",
 		"selectorObjs": [
 			{
@@ -13,7 +13,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

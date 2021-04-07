@@ -2,7 +2,7 @@
 	"name": "Walta",
 	"showCase": {
 		"url": "https://ethiopianmonitor.com/category/business/",
-		"selectorObjs": [
+		"selectorObjsConfig": [
 			{
 				"name": "links",
 				"selector": "div > header > h2 > a",
@@ -13,7 +13,7 @@
 		]
 	},
 	"news": {
-		"selectorObjs": [
+		"selectorObjsConfig": [
 			{
 				"name": "title",
 				"selector": ".site-main .entry-header .entry-title"

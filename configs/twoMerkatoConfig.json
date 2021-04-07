@@ -1,6 +1,6 @@
 {
 	"name": "2Merkato",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://www.2merkato.com/news",
 		"selectorObjs": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

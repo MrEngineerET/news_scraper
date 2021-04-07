@@ -1,6 +1,6 @@
 {
 	"name": "New Business Ethipia Economy",
-	"showCase": {
+	"showCaseConfig": {
 		"url": "https://newbusinessethiopia.com/topics/finance/",
 		"selectorObjs": [
 			{
@@ -12,7 +12,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",

@@ -1,6 +1,7 @@
 {
 	"name": "businessInfoETH",
-	"showCase": {
+	"type": "telegram",
+	"showCaseConfig": {
 		"url": "https://t.me/s/Businessinfoeth",
 		"selectorObjs": [
 			{
@@ -13,7 +14,7 @@
 			}
 		]
 	},
-	"news": {
+	"newsConfig": {
 		"selectorObjs": [
 			{
 				"name": "title",
