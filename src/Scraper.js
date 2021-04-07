@@ -2,31 +2,23 @@ const fs = require('fs')
 const path = require('path')
 const debugBotDatabase = require('debug')('debugBotDatabase')
 const debugScraper = require('debug')('debugScraper')
+const axios = require('axios')
 
 const { loader } = require('./loader')
 const { parser } = require('./parser')
 
 class Scraper {
-	constructor(configsFileDirectory = null, Model = null, fileSavingDir = null) {
-		this.configsFileDirectory = configsFileDirectory
-		this.Model = Model
-		this.fileSavingDir = fileSavingDir
-		if (configsFileDirectory)
-			if (!(Model || fileSavingDir) || (Model && fileSavingDir))
-				throw Error('Only either Model or fileSavingLocation must be defined')
-	}
 	/**
-	 * used when configFileDirectory and either Model or fileSavingDir are provided by the constructur
-	 * run for all the configration file found in the configFileDirectory
+	 * run the scraper for all the configration file found in the configFileDirectory
 	 */
-	async runScraper() {
+	static async runScraper(configsFileDirectory, fileSavingDir = null) {
 		// reading the base configration file which contain path and to the news configration file
 		debugScraper('Started Reading config.json file')
 		let configs = fs
-			.readdirSync(this.configsFileDirectory)
+			.readdirSync(configsFileDirectory)
 			.filter(fileName => fileName.indexOf('.') != 0 && fileName.slice(-5) === '.json')
 			.map(fileName => {
-				return this._readJSONfile(path.join(this.configsFileDirectory, fileName))
+				return this._readJSONfile(path.join(configsFileDirectory, fileName))
 			})
 		debugScraper('Finished Reading config.json file')
 
@@ -42,16 +34,16 @@ class Scraper {
 				for (let url of urls) {
 					try {
 						let news = await this.scrape(config.newsConfig, url, config.source)
-						if (this.Model) this.saveNewstoDatabase({ url, ...news })
+						if (!fileSavingDir) this._saveNewstoDatabase({ url, ...news })
 						else allNews.push({ url, ...news })
 					} catch (error) {
 						console.log(error)
 					}
 				}
-				if (!this.Model) {
+				if (fileSavingDir) {
 					const fileName = `${config.source.name.replace(/\W/g, '_')}.json`
-					const savingLocation = path.join(this.fileSavingDir, `${fileName}`)
-					this.saveNEWStoFile(allNews, savingLocation)
+					const savingLocation = path.join(fileSavingDir, `${fileName}`)
+					this._saveNEWStoFile(allNews, savingLocation)
 				}
 			} catch (error) {
 				console.log(error)
@@ -61,10 +53,7 @@ class Scraper {
 	/**
 	 * scrape a single configration file and save either in a database or in a file
 	 */
-	async runSingleScraper(configFile, Model = null, fileSavingDir = null) {
-		if (!(Model || fileSavingDir) || (Model && fileSavingDir))
-			throw Error('Only either Model or fileSavingLocation must be defined')
-
+	static async runSingleScraper(configFile, fileSavingDir = null) {
 		debugScraper('Started Reading the configration file file')
 		let config = this._readJSONfile(configFile)
 		debugScraper('Finished Reading config.json file')
@@ -74,23 +63,23 @@ class Scraper {
 			for (let url of urls) {
 				try {
 					let news = await this.scrape(config.newsConfig, url, config.source)
-					if (Model) this.saveNewstoDatabase({ url, ...news }, Model)
+					if (!fileSavingDir) this._saveNewstoDatabase({ url, ...news })
 					else allNews.push({ url, ...news })
 				} catch (error) {
 					console.log(error)
 				}
 			}
-			if (!Model) {
+			if (fileSavingDir) {
 				const fileName = `${config.source.name.replace(/\W/g, '_')}.json`
 				const savingLocation = path.join(fileSavingDir, `${fileName}`)
-				this.saveNEWStoFile(allNews, savingLocation)
+				this._saveNEWStoFile(allNews, savingLocation)
 			}
 		} catch (error) {
 			console.log(error)
 		}
 	}
 	// save the news to a file
-	async saveNEWStoFile(news, location) {
+	static async _saveNEWStoFile(news, location) {
 		debugScraper('	Writting to a file Started')
 		try {
 			fs.writeFile(location, JSON.stringify(news), 'utf-8', () => {
@@ -101,18 +90,18 @@ class Scraper {
 		}
 	}
 	// saves the news to the database
-	async saveNewstoDatabase(news, Model = this.Model) {
+	static async _saveNewstoDatabase(news) {
 		debugBotDatabase('		Started saving news to the database')
 		try {
-			let doc = await Model.create(news)
+			let doc = await axios.post(`${process.env.URL}/news`, news)
 			if (doc) debugBotDatabase('		News Saved to database succesfully')
-			return JSON.parse(JSON.stringify(doc))
+			return doc
 		} catch (error) {
 			debugBotDatabase(`		Failed saving News: ${error}`)
 		}
 	}
-	// the main scraping function
-	async scrape(config, url = null, source) {
+	// the main scraping function; returns the raw scraped data
+	static async scrape(config, url = null, source) {
 		debugScraper(`Started scraping news from ${source.name}`)
 		try {
 			let page
@@ -126,7 +115,7 @@ class Scraper {
 		}
 	}
 	//read a json file and return the parsed json object
-	_readJSONfile(location) {
+	static _readJSONfile(location) {
 		let file = fs.readFileSync(location, {
 			encoding: 'utf-8',
 		})

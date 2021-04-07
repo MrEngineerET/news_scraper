@@ -4,5 +4,4 @@ const Scraper = require('./src/Scraper')
 
 const configDirectory = path.join(__dirname, 'configs')
 const fileSavingDirectory = path.join(__dirname, 'data', 'out')
-let scraper = new Scraper(configDirectory, null, fileSavingDirectory)
-scraper.runScraper()
+Scraper.runScraper(configDirectory, fileSavingDirectory)
